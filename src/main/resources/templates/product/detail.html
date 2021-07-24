@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+    <body>
+        <main th:object="${items}">
+        <div class="row mb-5" style="height: 390px">
+        <img class="col-6" alt="" th:src="@{|/images/*{image}|}">
+            <div class="card col-4 p-0">
+  <div class="card-body">
+  <ul th:text="*{name}"></ul>
+  <ul th:text="*{price}"></ul>
+  <ul th:text="*{CreateDate}" ></ul>
+    <ul th:text="*{category.name}"></ul>
+  </div>
+  <div class="card-footer"><button class="btn btn-primary" style="color: #fff;font-size: 12px;float: right;"><i class=" fas fa-shopping-cart "></i></button></div>
+  </div>
+</div>
+<h3>Sản phẩm cùng loại</h3>
+<hr>
+<div class="row">
+<div th:each="p:${ListPro}" class="col-sm-4 mb-4" >
+			<div class="card text-center" >
+  <div class="card-header" style=" height: 50px; font-size: 15px" th:text=${p.name}>Header</div>
+  <div class="card-body">	<a th:href="@{|/product/detail/${p.id}|}">
+  <img class="card-img-top" style="max-width:95%; height: 200px"  th:src="@{|/images/${p.image}|}"  >
+  </a></div>
+  <div class="card-footer">
+  $[[${p.price}]]
+  <!--  <a></a> -->
+  <button class="btn btn-primary" style="margin-left: 118px;color: #fff;font-size: 15px;"><i class=" fas fa-shopping-cart "></i></button>
+  </div>
+</div>
+			</div>
+		</div>
+
+        </main>
+    </body>
+</html>
