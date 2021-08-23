@@ -1,9 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
 
-    <body>
-        <main>
-            <h1>View cart</h1>
-        </main>
-    </body>
+<body>
+	<main class="row ">
+
+		<div class="col-sm-12 mt-5" th:fragment="shopping_cart">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Amount</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<div th:each="c:${cart}">
+					<form th:action="@{/updatecart}" method="post">
+					<input type="hidden" th:value="${c.productId}" name="id">
+						<tr>
+						<td th:text="${c.productId}"></td>
+							<td th:text="${c.name}"></td>
+							<td >$[[${c.price}]]</td>
+							<td><input type="number" name="qty" th:value="${c.qty}"
+									onblur="this.form.submit()" style="width: 50px;"></td>
+							<td >$[[${c.qty * c.price}]]</td>
+							<td><a class="btn btn-danger btn-sm"
+									th:href="@{|/delcart/${c.productId }|}"><i class="fas fa-trash-alt"></i></a></td>
+						</tr>
+						</form>
+					</div>
+
+				</tbody>
+			</table>
+			<p style="font-size:20px">Tổng $[[${total}]]</p>
+<hr />
+				<a class="btn btn-danger btn-sm" href="/clearcart">Clear
+					Cart</a> <a class="btn btn-primary btn-sm" href="/product/list">Add
+					more</a> <a class="btn btn-primary btn-sm" href="/order/checkout">Checkout</a>
+		</div>
+
+
+
+	</main>
+</body>
 </html>

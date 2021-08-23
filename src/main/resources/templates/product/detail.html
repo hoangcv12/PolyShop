@@ -3,8 +3,8 @@
 
     <body>
         <main th:object="${items}">
-        <div class="row mb-5" style="height: 390px">
-        <img class="col-6" alt="" th:src="@{|/images/*{image}|}">
+        <div class="row mb-5">
+        <img class="col-8" alt="" th:src="@{|/images/*{image}|}">
             <div class="card col-4 p-0">
   <div class="card-body">
   <ul th:text="*{name}"></ul>

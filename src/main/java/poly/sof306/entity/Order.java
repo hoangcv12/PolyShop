@@ -18,34 +18,25 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @SuppressWarnings("serial")
 @Data
-@Entity
-@Table(name = "Products")
-public class Product implements Serializable {
+@Entity 
+@Table(name = "Orders")
+public class Order  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String name;
-	private String image;
-	private Double price;
+	Long id;
+	String address;
 	@Temporal(TemporalType.DATE)
-	@Column(name="Createdate")
-	Date createDate=new Date();
-	private Boolean available;
+	@Column(name = "Createdate")
+	Date createDate = new Date();
 	@ManyToOne
-	@JoinColumn(name="Categoryid")
-	Categories category;
+	@JoinColumn(name = "Username")
+	Account account;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;
-	
-	
-	
 }

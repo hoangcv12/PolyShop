@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+	<main >
+ <div th:each="p:${ac}" class="col-sm-4 mb-4" >
+ <p th:text="${p.username}"></p>
+ <p th:text="${p.Password}"></p>
+ <p th:text="${p.email}"></p>
+ </div>
+	
+	</main>
+</body>
+</html>

@@ -1,32 +1,29 @@
 package poly.sof306.entity;
 
-
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Id;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "Categories")
-public class Categories {
-
+@Table(name = "Roles")
+public class Roles implements Serializable{
 	@Id
-	String Id;
-	String name;
-	@JsonIgnore
-	@OneToMany(mappedBy = "category")
-	List<Product> products;
+private String id;
+private	String name;
+@JsonIgnore
+	@OneToMany(mappedBy = "Roles")
+	List<Authorities> auth;
 }
